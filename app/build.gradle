@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
@@ -8,6 +9,7 @@ android {
         applicationId "com.trickring.omikuji"
         minSdkVersion 21
         targetSdkVersion 26
+        flavorDimensions "default"
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -16,6 +18,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    // ビルド環境
+    productFlavors {
+        Production {
+            buildConfigField("String", "API_ENDPOINT", '"https://ii1lgf2vel.execute-api.ap-northeast-1.amazonaws.com/develop/"')
+        }
+        Development {
+            buildConfigField("String", "API_ENDPOINT", '"https://ii1lgf2vel.execute-api.ap-northeast-1.amazonaws.com/develop/"')
         }
     }
     // ソースにkotlinディレクトリ追加
@@ -35,7 +46,6 @@ android {
 
 // ライブラリバージョンを定義
 final SUPPORT_LIBRARY_VERSION = "26.1.0"
-final OK_HTTP_LIBRARY_VERSION = "3.9.0"
 final RETROFIT_LIBRARY_VERSION = "2.3.0"
 
 dependencies {
@@ -52,14 +62,10 @@ dependencies {
     // 画像ライブラリ
     implementation "com.squareup.picasso:picasso:2.5.2"
 
-    // 通信ライブラリ
-    implementation "com.squareup.okhttp3:okhttp:${OK_HTTP_LIBRARY_VERSION}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${OK_HTTP_LIBRARY_VERSION}"
+    // 通信ライブラリ & Jsonライブラリ
     implementation "com.squareup.retrofit2:retrofit:${RETROFIT_LIBRARY_VERSION}"
-    implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_LIBRARY_VERSION}"
-
-    // Jsonライブラリ
-    implementation "com.google.code.gson:gson:2.8.1"
+    implementation "com.squareup.retrofit2:converter-moshi:${RETROFIT_LIBRARY_VERSION}"
+    implementation "com.squareup.moshi:moshi-kotlin:1.5.0"
 
     // テストライブラリ
     testImplementation 'junit:junit:4.12'
