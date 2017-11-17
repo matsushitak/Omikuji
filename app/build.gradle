@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -20,13 +18,50 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    // ソースにkotlinディレクトリ追加
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    // DataBindingを使用
+    dataBinding {
+        enabled = true
+    }
+    // Java8を使用
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
+
+// ライブラリバージョンを定義
+final SUPPORT_LIBRARY_VERSION = "26.1.0"
+final OK_HTTP_LIBRARY_VERSION = "3.9.0"
+final RETROFIT_LIBRARY_VERSION = "2.3.0"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // MVVM ライブラリ
+    kapt "com.android.databinding:compiler:3.0.0"
+
+    // Android Support　ライブラリ
+    implementation "com.android.support:appcompat-v7:${SUPPORT_LIBRARY_VERSION}"
+    implementation "com.android.support:design:${SUPPORT_LIBRARY_VERSION}"
+
+    // 画像ライブラリ
+    implementation "com.squareup.picasso:picasso:2.5.2"
+
+    // 通信ライブラリ
+    implementation "com.squareup.okhttp3:okhttp:${OK_HTTP_LIBRARY_VERSION}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${OK_HTTP_LIBRARY_VERSION}"
+    implementation "com.squareup.retrofit2:retrofit:${RETROFIT_LIBRARY_VERSION}"
+    implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_LIBRARY_VERSION}"
+
+    // Jsonライブラリ
+    implementation "com.google.code.gson:gson:2.8.1"
+
+    // テストライブラリ
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
