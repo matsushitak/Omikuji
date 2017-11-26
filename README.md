@@ -8,28 +8,39 @@ http://www.eda-inc.jp/post-106/
 
 ## 設計
 
-ざっくり大きく分けると以下の分類になる。
-MVVMが一番おおい。
+* ざっくり大きく分けると以下の分類になる。
+* MVVMが一番おおい。
 
-* MVC
+### MVC
+
 https://qiita.com/shinkuFencer/items/f2651073fb71416b6cd7
-* MVP
+
+### MVP
+
 https://android.benigumo.com/20160729/android-architecture-blueprints/
-* MVVM
+
+### MVVM
+
 https://blog.fenrir-inc.com/jp/2014/04/mvvm-for-android.html
 
 ## Try Kotlin
 
 * ブラウザでKotlinが試せるツール
 * 文法も確認することができる
+
 https://try.kotlinlang.org/#/Examples/Basic%20syntax%20walk-through/
 
 # おみくじアプリをつくってみよう
+
+## スクリーンショット
+
+<img src="https://github.com/trickring/Omikuji/blob/master/Screenshot_1511658893.png" width="300">
 
 ## ビルド設定
 
 * アプリのビルドを設定を説明
 * build.gradleのファイルの設定について
+
 https://developer.android.com/studio/build/build-variants.html?hl=ja
 
 ## Modelを実装
@@ -48,13 +59,16 @@ https://developer.android.com/studio/build/build-variants.html?hl=ja
 
 ### ここで利用するライブラリ
 
-### Moshi
+> Moshi
 
 Json文字列をモデルに変換するためのライブラリ
+
 https://github.com/square/moshi
 
-### Retrofit
+> Retrofit
+
 通信処理を簡単に実装できるライブラリ
+
 http://square.github.io/retrofit/
 
 ## ViewModelを実装
@@ -64,11 +78,12 @@ http://square.github.io/retrofit/
 * 画面ごとに作成が必要
 * Viewに必要なメソッドを実装する
 
-## ここで利用するライブラリ
+### ここで利用するライブラリ
 
-### DataBinding
+> DataBinding
 
 ViewにViewModelの状態をバインドするためのライブラリ
+
 https://developer.android.com/topic/libraries/data-binding/index.html?hl=ja
 
 ## Viewを実装
@@ -76,6 +91,7 @@ https://developer.android.com/topic/libraries/data-binding/index.html?hl=ja
 ### アセットを追加
 
 * ここからアセットをダウンロードしてください
+
 https://github.com/trickring/Omikuji/tree/master/app/src/main/res
 
 ### レイアウトを実装
